@@ -14,7 +14,7 @@ modelo.compile(
 )
 
 
-entrenamiento = modelo.fit(dolares,libras,epochs=200)
+entrenamiento = modelo.fit(dolares,libras,epochs=250)
 print("Probando mi ia que convierte dolares a libras")
 num= float(input("Por favor ingresa una cantidad en dolares: $"))
 resultado= modelo.predict([num])
