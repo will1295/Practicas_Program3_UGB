@@ -9,3 +9,6 @@ def index(request):
 def acercade(request):
     return render(request,'about.html')
 
+def base(request):
+    return render(request,'base.html')
+
