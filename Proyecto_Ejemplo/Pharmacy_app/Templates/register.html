@@ -1,0 +1,12 @@
+{%extends "prueba.html" %}
+
+{%block title%}Pagina Principal{% endblock %}
+
+{%block content%}
+<h1>Registro</h1>
+<form method="post" action="/registro/"> {% csrf_token %}
+   {{form}}
+   <button class="btn btn-info">Registrar Usuario</button>
+</form>
+
+{% endblock %}

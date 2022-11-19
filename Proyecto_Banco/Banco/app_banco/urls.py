@@ -1,11 +1,16 @@
 from django.urls import path
-from .views import index, acercade, base, registro, clientes, regclientes
+from .views import *
 
 urlpatterns = [
     path('', index, name="inicio"),
     path('about/', acercade, name="about"),
     path('base/',base),
-    path('login/',registro),
-    path('clientes/',clientes),
-    path('regclientes/',regclientes)
+    path('registro/',registro, name="registro"),
+    path('adminclientes/',adminclientes, name="adminclientes"),
+    path('agregarcliente/',agregarcliente),
+    path('delclientes/<id>',delclientes, name="delcientes"),
+    path('editclientes/<id>',editclientes, name="editcientes"),
+    path('actualizarcliente/<id>',actualizarclientes,name="actualizarclientes"),
 ]
+
+

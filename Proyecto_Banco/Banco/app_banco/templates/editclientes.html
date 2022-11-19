@@ -1,0 +1,43 @@
+{% extends "base.html"%}
+
+{% block title %}Pagina principal{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <div class="row">
+        <div class="col-6">
+            <h2>Editar Registros de Cliente</h2>
+            <form action="/actualizarcliente/{{clientes.id}}" method="post">{% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputcodigo">Codigo</label>
+                        <input type="text" class="form-control" value="{{clientes.codigo}}" name="inputcodigo" id="inputcodigo" placeholder="Digite el código">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inpunombre">Nombre</label>
+                        <input type="text" class="form-control"value="{{clientes.nombre}}" name="inputnombre" id="inputnombre" placeholder="Digite el nombre">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputapellido">Apellido</label>
+                    <input type="text" class="form-control" value="{{clientes.apellido}}" name="inputapellido" id="inputapellido"
+                        placeholder="Digite el apellido">
+                </div>
+                <div class="form-group">
+                    <label for="inputtelefono">Telefono</label>
+                    <input type="text" class="form-control" value="{{clientes.telefono}}" name="inputtelefono" id="inputtelefono"
+                        placeholder="Numero de telefono">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputCity">Direccion</label>
+                        <input type="text" class="form-control" value="{{clientes.direccion}}" name="inputdir" id="inputdir" placeholder="Ingrese la Direccion">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Actualizar Cliente</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
