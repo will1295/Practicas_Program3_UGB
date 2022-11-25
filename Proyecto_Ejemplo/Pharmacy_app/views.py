@@ -2,32 +2,55 @@ from django.shortcuts import render, redirect
 from django.template import context
 from django.http import HttpResponse
 from .models import Clientes
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 
 # Create your views here.
 
 
-
+@login_required(login_url='/')
 def index(request):
-    return render(request,'index.html',{"username":"Carlitos",
-    "username2":"Maria"})
+    return render(request,'index.html')
 
 
+@login_required(login_url='/')
 def about(request):
     return render(request,'about.html') 
 
 
+class Registro(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username','password1','password2','email','first_name','last_name']
+
 def registro(request):
-    form = UserCreationForm()
+    form = Registro()
+    if request.method == 'POST':
+        form = Registro(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Usuario creado con exito')
+    return render(request,'register.html', {"form":form})     
 
- #   if request.method=="post":
-  #      form = UserCreationForm(request.post)
-   #     if form.is_valid():
-   #         form.save()
-    context = {"form":form}
-    
+def vistalogin(request):
+    if request.method == 'POST':
+       username=request.POST.get('username')
+       password=request.POST.get('password')
+       user = authenticate(request, username=username, password=password)
+       if user is not None:
+        login(request, user)
+        return redirect('principal')
 
-    return render(request,'register.html', context)     
+    return render(request,'login.html')     
+
+def cerrarsesion(request):
+    logout(request)
+    return redirect('/')
+
 
 def prueba(request):
     return render(request,'prueba.html')     

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Clientes
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -13,8 +14,14 @@ def acercade(request):
     
     return render(request,'about.html')
 
+class Registro(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username','password1','password2','email','first_name','last_name']
+
+
 def registro(request):
-    form = UserCreationForm()
+    form = Registro()
 
     if request.method == "POST":
         form = UserCreationForm(request.POST)

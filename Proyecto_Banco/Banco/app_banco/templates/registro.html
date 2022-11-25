@@ -9,7 +9,14 @@
             <h1>Formulario de Registro</h1>
         </div>
         <form method="post" action="/registro/"> {%csrf_token%}
-            {{form.as_p}}
+            {{form.username}}
+            {{form.first_name}}
+            {{form.last_name}}
+            {{form.email}}
+            {{form.password1}}
+            {{form.password2}}
+
+
         <button type="submit">Registrarse</button>    
         </form>
     </div>
